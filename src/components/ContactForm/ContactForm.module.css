@@ -1,0 +1,26 @@
+.formcontainer {
+  display: block;
+  align-items: center;
+  gap: 10px;
+}
+.form {
+  display: block;
+  width: 200px;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: lightgray;
+  border-radius: 15px;
+  border: none;
+}
+.btn::after,
+:focus {
+  background-color: rgb(187, 175, 175);
+  cursor: pointer;
+  box-shadow: 0 0 7px 3px rgb(73, 8, 19);
+}
+.btn {
+  border: none;
+}
+input::placeholder {
+  opacity: 0.6;
+}

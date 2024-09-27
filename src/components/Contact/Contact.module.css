@@ -1,0 +1,23 @@
+.btn {
+  background-color: beige;
+  color: black;
+  outline: none;
+  transition: background-color 0.3ms;
+  border-radius: 10%;
+  font-size: 15px;
+  border: none;
+  margin-left: 20px;
+  align-items: center;
+}
+
+.btn:hover,
+:focus {
+  background-color: rgb(187, 175, 175);
+  cursor: pointer;
+  box-shadow: 0 0 7px 3px rgb(73, 8, 19);
+}
+.contactlist {
+  background-color: lightgrey;
+  padding: 10px 20px 10px;
+  border-radius: 20px;
+}

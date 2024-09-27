@@ -1,0 +1,10 @@
+.contactlist {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  /* background-color: lightgray; */
+  grid-template-rows: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
