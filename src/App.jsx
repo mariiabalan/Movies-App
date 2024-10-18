@@ -15,7 +15,6 @@ const App = () => {
   const isError = useSelector(selectIsError);
   return (
     <div className={s.appcontainer}>
-      <h1 className={s.apptitle}>Contacts</h1>
       <SearchBox />
       <ContactsForm />
       {isLoading && <h2 className={s.loadingmessage}>Loading...</h2>}

@@ -1,3 +1,49 @@
+.contactlist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contactInfo {
+  display: flex;
+  align-items: flex-start;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.phoneInfo {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.nameInfo {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.icon {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+
+.contactName {
+  font-weight: bold;
+}
+
+.contactNumber {
+  color: #555;
+}
+
 .btn {
   background-color: #f8d7da;
   color: #721c24;
@@ -17,26 +63,4 @@
   background-color: #f5c6cb;
   cursor: pointer;
   box-shadow: 0 0 10px 2px rgba(114, 28, 36, 0.7);
-}
-
-.contactlist {
-  background-color: #f1f1f1;
-  padding: 15px 20px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  transition: background-color 0.3s ease;
-}
-
-.contactlist:hover {
-  background-color: #e0e0e0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.contactlist span {
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
 }
