@@ -1,64 +1,28 @@
-// import ContactForm from "./components/ContactForm/ContactForm";
-// import SearchBox from "./components/SearchBox/SearchBox";
-// import ContactList from "./components/ContactList/ContactList";
-// import { useState, useEffect } from "react";
-// const App = () => {
-//   const [contacts, setContacts] = useState(() => {
-//     const savedContacts = localStorage.getItem("contacts");
-//     return savedContacts
-//       ? JSON.parse(savedContacts)
-//       : [
-//           { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-//           { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-//           { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-//           { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-//         ];
-//   });
-//   const [filter, setFilter] = useState("");
-//   useEffect(() => {
-//     localStorage.setItem("contacts", JSON.stringify(contacts));
-//   }, [contacts]);
-
-//   const addContact = (newContact) => {
-//     setContacts((prevContacts) => [...prevContacts, newContact]);
-//   };
-//   const handleFilterChange = (event) => {
-//     setFilter(event.target.value);
-//   };
-//   const handleDeleteContact = (id) => {
-//     setContacts((prevContacts) =>
-//       prevContacts.filter((contact) => contact.id !== id)
-//     );
-//   };
-//   const filteredContacts = contacts.filter((contact) =>
-//     contact.name.toLowerCase().includes(filter.toLowerCase())
-//   );
-//   return (
-//     <div>
-//       <h1>Phonebook</h1>
-//       <ContactForm onAddContact={addContact} />
-//       <SearchBox value={filter} onChange={handleFilterChange} />
-//       <ContactList
-//         contacts={filteredContacts}
-//         onDeleteContact={handleDeleteContact}
-//       />
-//     </div>
-//   );
-// };
-
-// export default App;
-
+import { useDispatch, useSelector } from "react-redux";
 import ContactsForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
-
-const App = () => (
-  <div>
-    <h1>Contacts</h1>
-    <SearchBox />
-    <ContactsForm />
-    <ContactList />
-  </div>
-);
+import { useEffect } from "react";
+import { fetchContacts } from "./redux/contactsOps";
+import { selectIsLoading, selectIsError } from "./redux/contactsSlice";
+import s from "./App.module.css";
+const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
+  return (
+    <div className={s.appcontainer}>
+      <h1 className={s.apptitle}>Contacts</h1>
+      <SearchBox />
+      <ContactsForm />
+      {isLoading && <h2 className={s.loadingmessage}>Loading...</h2>}
+      {isError && <h2 className={s.errormessage}>Ups...</h2>}
+      <ContactList />
+    </div>
+  );
+};
 
 export default App;

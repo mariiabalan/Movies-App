@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import s from "./ContactForm.module.css";
 import * as yup from "yup";
+import { addContactsThunk } from "../../redux/contactsOps";
 
 const ContactsForm = () => {
   const dispatch = useDispatch();
@@ -24,13 +25,7 @@ const ContactsForm = () => {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(
-      addContact({
-        id: Date.now(),
-        name: values.username,
-        number: values.usernumber,
-      })
-    );
+    dispatch(addContactsThunk(values));
     resetForm();
   };
 
@@ -44,20 +39,20 @@ const ContactsForm = () => {
         <Form className={s.form}>
           <label className={s.formlabel}>
             Name
-            <Field name="username" />
+            <Field name="username" className={s.inputField} />
             <ErrorMessage
               name="username"
               component="div"
-              style={{ color: "red" }}
+              className={s.errorMessage}
             />
           </label>
           <label className={s.formlabel}>
             Number
-            <Field name="usernumber" />
+            <Field name="usernumber" className={s.inputField} />
             <ErrorMessage
               name="usernumber"
               component="div"
-              style={{ color: "red" }}
+              className={s.errorMessage}
             />
           </label>
           <button className={s.btn} type="submit">
