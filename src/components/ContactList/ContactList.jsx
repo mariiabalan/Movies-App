@@ -2,13 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css";
-import { selectFilteredContacts } from "../../redux/contactsSlice";
-import { deleteContactsThunk } from "../../redux/contactsOps";
+import { selectFilteredContacts } from "../../redux/contacts/selectors";
+import { deleteContacts, fetchContacts } from "../../redux/contacts/operations";
+import { useEffect } from "react";
 
 const ContactList = () => {
-  // const contacts = useSelector(selectContacts);
-  const contacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+  const contacts = useSelector(selectFilteredContacts);
+
   return (
     <ul className={s.contactlist}>
       {contacts.map((contact) => (
@@ -17,7 +21,7 @@ const ContactList = () => {
           id={contact.id}
           name={contact.name}
           number={contact.number}
-          onDelete={() => dispatch(deleteContactsThunk(contact.id))}
+          onDelete={() => dispatch(deleteContacts(contact.id))}
         />
       ))}
     </ul>

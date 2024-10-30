@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import s from "./Contact.module.css";
-import { deleteContactsThunk } from "../../redux/contactsOps";
+import { deleteContacts } from "../../redux/contacts/operations";
 
 import { CiUser } from "react-icons/ci";
 import { HiOutlinePhone } from "react-icons/hi";
@@ -10,7 +10,7 @@ const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteContactsThunk(id));
+    dispatch(deleteContacts(id));
   };
 
   return (
